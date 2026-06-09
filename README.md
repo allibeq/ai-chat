@@ -1,8 +1,8 @@
-<img width="1229" height="869" alt="image" src="https://github.com/user-attachments/assets/55efba56-c3a6-41f9-87c2-8628bc24120f" />
-
 # AI Chat Desktop
 
 A desktop AI chat client built with Electron, React, and PocketBase. Sign in, create conversations, and chat with an AI assistant. All history is persisted locally via a self-hosted PocketBase instance.
+
+<img width="800" height="600" alt="image" src="https://github.com/user-attachments/assets/55efba56-c3a6-41f9-87c2-8628bc24120f" />
 
 ## Stack
 
