@@ -2,7 +2,8 @@ import { useEffect } from 'react'
 import { useQueryClient } from '@tanstack/react-query'
 import ChatBar from "@/features/chat/conv-bar/ChatBar";
 import ChatDialog from "@/features/chat/dialog/ChatDialog";
-import { fetchConversations, fetchMessages, deleteConversation } from '@/lib/api/api'
+import { fetchConversations, deleteConversation } from '@/lib/api/conversations'
+import { fetchMessages } from '@/lib/api/messages'
 import { queryKeys } from '@/lib/queryKeys'
 
 function ChatMainPage() {

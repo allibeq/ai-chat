@@ -5,10 +5,13 @@ import { createElement } from 'react'
 import { queryKeys } from '../lib/queryKeys'
 import type { MessageData } from '../lib/schemas/dialogSchema'
 
-vi.mock('../lib/api/api', () => ({
+vi.mock('../lib/api/messages', () => ({
     createMessage: vi.fn(),
-    callAI:        vi.fn(),
     fetchMessages: vi.fn(),
+}))
+
+vi.mock('../lib/api/ai', () => ({
+    callAI: vi.fn(),
 }))
 
 vi.mock('../stores/uiStore', () => ({
@@ -61,7 +64,8 @@ describe('useSendMessage', () => {
     })
 
     it('onError rollback cache to previous state', async () => {
-        const { createMessage, callAI } = await import('../lib/api/api')
+        const { createMessage } = await import('../lib/api/messages')
+        const { callAI } = await import('../lib/api/ai')
         const { useSendMessage } = await import('../features/chat/hooks/useMessages')
 
         vi.mocked(createMessage).mockResolvedValueOnce({

@@ -12,7 +12,7 @@ export default function App() {
         restoreSession().finally(() => setBooting(false))
     }, [])
 
-    if (booting) return null
+    if (booting || status === 'idle' || status === 'loading') return null
 
     if (status === 'authenticated') {
         return <ChatMainPage></ChatMainPage>

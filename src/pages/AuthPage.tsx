@@ -29,7 +29,7 @@ export default function AuthPage() {
                 />
             )}
 
-            <span>
+            <p className="flex items-center gap-1 text-sm">
                 {mode === 'login' ? "don't have an account?" : 'have an account?'}
                 <button
                     type="button"
@@ -38,7 +38,7 @@ export default function AuthPage() {
                 >
                     {mode === 'login' ? 'create account' : 'log in'}
                 </button>
-            </span>
+            </p>
         </div>
     );
 }

@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { queryKeys } from '../../../lib/queryKeys'
-import { fetchConversations, createConversation, renameConversation, deleteConversation } from '../../../lib/api/api'
+import { fetchConversations, createConversation, renameConversation, deleteConversation } from '@/lib/api/conversations'
 import { useUiStore } from '../../../stores/uiStore'
 
 export function useConversations() {

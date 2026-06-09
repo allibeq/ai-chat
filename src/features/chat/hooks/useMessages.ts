@@ -1,6 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { queryKeys } from '../../../lib/queryKeys'
-import { fetchMessages, createMessage, callAI } from '../../../lib/api/api'
+import { fetchMessages, createMessage } from '@/lib/api/messages'
+import { callAI } from '@/lib/api/ai'
 import { useUiStore } from '../../../stores/uiStore'
 import type { MessageData } from '../../../lib/schemas/dialogSchema'
 
