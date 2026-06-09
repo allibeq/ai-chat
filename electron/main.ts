@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Menu } from "electron";
+import { app, BrowserWindow, Menu, session  } from "electron";
 import path from "path";
 import {registerAuthIpc} from "./ipc/auth.ipc";
 import {registerAiIpc} from "./ipc/ai.ipc";
@@ -26,4 +26,33 @@ app.whenReady().then(() => {
     registerAuthIpc();
     registerAiIpc();
     createWindow();
+
+    const isDev = process.env.NODE_ENV === 'development'
+
+    const csp = isDev
+        ? [
+            "default-src 'self';",
+            "script-src 'self';",
+            "style-src 'self' 'unsafe-inline';",
+            "connect-src 'self' http://127.0.0.1:8090 http://127.0.0.1:3000 ws://localhost:5173;",
+            "img-src 'self' data:;",
+            "font-src 'self';",
+        ].join(' ')
+        : [
+            "default-src 'self';",
+            "script-src 'self';",
+            "style-src 'self' 'unsafe-inline';",
+            "connect-src 'self' http://127.0.0.1:8090 http://127.0.0.1:3000;",
+            "img-src 'self' data:;",
+            "font-src 'self';",
+        ].join(' ')
+
+    session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
+        callback({
+            responseHeaders: {
+                ...details.responseHeaders,
+                'Content-Security-Policy': [csp],
+            },
+        })
+    })
 });
