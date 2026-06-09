@@ -4,8 +4,8 @@ import { useCreateConversation } from '../hooks/useConversation'
 import { useSendMessage } from '../hooks/useMessages'
 import { matchesActiveDialog } from '../types/pending'
 import type { PendingSend, PendingMap } from '../types/pending'
-import {queryKeys} from "@/lib/queryKeys";
-import {MessageData} from "@/lib/schemas/dialogSchema";
+import { queryKeys } from "@/lib/queryKeys";
+import type { MessageData } from "../../../lib/schemas/dialogSchema";
 import {useQueryClient} from "@tanstack/react-query";
 
 export function useChatSendMessage() {
