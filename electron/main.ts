@@ -27,12 +27,12 @@ app.whenReady().then(() => {
     registerAiIpc();
     createWindow();
 
-    const isDev = process.env.NODE_ENV === 'development'
+    const isDev = !app.isPackaged
 
     const csp = isDev
         ? [
             "default-src 'self';",
-            "script-src 'self';",
+            "script-src 'self' 'unsafe-inline';",
             "style-src 'self' 'unsafe-inline';",
             "connect-src 'self' http://127.0.0.1:8090 http://127.0.0.1:3000 ws://localhost:5173;",
             "img-src 'self' data:;",

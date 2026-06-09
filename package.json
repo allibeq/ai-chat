@@ -4,12 +4,11 @@
   "version": "0.0.0",
   "main": "dist-electron/main.js",
   "scripts": {
-    "dev": "vite",
+    "dev": "concurrently \"vite\" \"tsc -p electron/tsconfig.json && wait-on http://localhost:5173 dist-electron/main.js && electron .\"",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "build:electron": "tsc -p electron/tsconfig.json",
-    "electron:dev": "concurrently \"vite\" \"tsc -p electron/tsconfig.json && wait-on http://localhost:5173 dist-electron/main.js && electron .\"",
     "electron": "electron .",
     "test": "vitest run",
     "test:watch": "vitest"
