@@ -4,6 +4,9 @@ import { useCreateConversation } from '../hooks/useConversation'
 import { useSendMessage } from '../hooks/useMessages'
 import { matchesActiveDialog } from '../types/pending'
 import type { PendingSend, PendingMap } from '../types/pending'
+import {queryKeys} from "@/lib/queryKeys";
+import {MessageData} from "@/lib/schemas/dialogSchema";
+import {useQueryClient} from "@tanstack/react-query";
 
 export function useChatSendMessage() {
     const { activeConversationId } = useUiStore();
@@ -50,7 +53,7 @@ export function useChatSendMessage() {
                         {
                             onError:   () => updatePending(conversation.id,{
                                 text:         trimmed,
-                                targetConvId: null,
+                                targetConvId: conversation.id,
                                 error:        'send',
                             }),
                         },
@@ -74,8 +77,15 @@ export function useChatSendMessage() {
         }
     }
 
+    const queryClient= useQueryClient();
+
     const handleRetry = (text: string) => {
         updatePending(pendingKey, null);
+        const cacheKey = queryKeys.messages(activeConversationId ?? '')
+        queryClient.setQueryData<MessageData[]>(
+            cacheKey,
+            (old) => (old ?? []).filter(msg => !msg.id.startsWith('temp-'))
+        )
         sendMessage(text);
     }
 

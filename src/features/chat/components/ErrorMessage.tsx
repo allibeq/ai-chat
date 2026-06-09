@@ -12,7 +12,7 @@ export function ErrorMessage({ message, onRetry }: Props) {
             {onRetry && (
                 <button
                     onClick={onRetry}
-                    className="text-amber-400 text-xs underline cursor-pointer"
+                    className="text-amber-400 text-xs underline cursor-pointer pointer-events-auto"
                 >
                     Retry
                 </button>

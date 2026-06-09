@@ -44,44 +44,29 @@ function ChatDialog() {
                 : null
 
     return (
-        <div className="flex flex-1 flex-col h-full">
-            <div className="relative flex-1 min-h-0">
-            {isEmpty ? (
-                <EmptyState />
-            ) : (
-                <MessageList
-                    key={activeConversationId ?? 'empty'}
-                    messages={displayMessages}
-                />
-            )}
-
-            {/*{showPending && pending?.error && (*/}
-            {/*    <div className="pointer-events-none absolute inset-x-0 bottom-4 flex justify-center">*/}
-            {/*    <ErrorMessage*/}
-            {/*        message="Failed to send. Please try again."*/}
-            {/*        onRetry={() => handleRetry(pending.text)}*/}
-            {/*    />*/}
-            {/*    </div>*/}
-            {/*)}*/}
-
-            {/*{messageError && (*/}
-            {/*    <div className="pointer-events-none absolute inset-x-0 bottom-4 flex justify-center">*/}
-            {/*        <ErrorMessage message="Failed to load messages." />*/}
-            {/*    </div>*/}
-            {/*)}*/}
+        <div className="flex flex-1 flex-col h-full relative">
+                {isEmpty ? (
+                    <EmptyState />
+                ) : (
+                    <MessageList
+                        key={activeConversationId ?? 'empty'}
+                        messages={displayMessages}
+                    />
+                )}
 
                 {error && (
-                    <div className="pointer-events-none absolute inset-x-0 bottom-4 flex justify-center">
+                    <div className="pointer-events-none absolute inset-x-0 bottom-25 z-13 flex justify-center">
                         <ErrorMessage message={error.message} onRetry={error.onRetry} />
                     </div>
                 )}
 
+            <div className="absolute inset-x-0 bottom-0 z-20">
+                <ChatInput
+                    dialogId={activeConversationId}
+                    onSend={sendMessage}
+                    disabled={isSending || isCreatingConversation || pending && !!pending?.error}
+             />
             </div>
-            <ChatInput
-                dialogId={activeConversationId}
-                onSend={sendMessage}
-                disabled={isSending || isCreatingConversation}
-            />
         </div>
     )
 }

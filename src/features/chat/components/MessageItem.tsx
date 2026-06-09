@@ -12,9 +12,9 @@ const markdownComponents = {
 }
 
 function MessageItem({ msg }: { msg: MessageData }) {
-    const isPending    = msg.id.startsWith('pending-')
+    const isPending = msg.id.startsWith('pending-')
     const isOptimistic = msg.id.startsWith('temp-')
-    const isTyping     = isOptimistic && msg.role === 'agent'
+    const isTyping = isOptimistic && msg.role === 'agent' && msg.content === '...'
 
     return (
         <div className={`flex pb-4 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>

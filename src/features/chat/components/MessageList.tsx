@@ -21,7 +21,7 @@ function MessageList({ messages }: Props) {
                 )}
                 components={{
                     Header: () => <div className="h-6" />,
-                    Footer: () => <div className="h-6" />,
+                    Footer: () => <div className="h-30" />,
                 }}
             />
     )

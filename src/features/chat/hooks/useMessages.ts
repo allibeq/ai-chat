@@ -58,8 +58,8 @@ export function useSendMessage() {
         },
 
         mutationFn: async ({ text, convId }: SendMessageInput) => {
-            const userMsg= await createMessage(convId, 'user', text);
             const reply = await callAI(text);
+            const userMsg= await createMessage(convId, 'user', text);
             const agentMsg = await createMessage(convId, 'agent', reply);
             return { messages: [userMsg, agentMsg], convId } as const;
         },
@@ -67,10 +67,17 @@ export function useSendMessage() {
         onError: (_err, _input, context) => {
             if (!context) return;
 
-            queryClient.setQueryData(
-                queryKeys.messages(context.convId),
-                context.previousMessages,
-            )
+            // queryClient.setQueryData(
+            //     queryKeys.messages(context.convId),
+            //     context.previousMessages,
+            // )
+
+            setTimeout(() => {
+                queryClient.setQueryData(
+                    queryKeys.messages(context.convId),
+                    context.previousMessages,
+                )
+            }, 1000)
         },
 
         onSuccess: ({ convId }) => {
