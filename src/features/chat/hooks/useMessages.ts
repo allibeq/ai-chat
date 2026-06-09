@@ -67,17 +67,11 @@ export function useSendMessage() {
         onError: (_err, _input, context) => {
             if (!context) return;
 
-            // queryClient.setQueryData(
-            //     queryKeys.messages(context.convId),
-            //     context.previousMessages,
-            // )
+            queryClient.setQueryData(
+                queryKeys.messages(context.convId),
+                context.previousMessages,
+            )
 
-            setTimeout(() => {
-                queryClient.setQueryData(
-                    queryKeys.messages(context.convId),
-                    context.previousMessages,
-                )
-            }, 1000)
         },
 
         onSuccess: ({ convId }) => {
