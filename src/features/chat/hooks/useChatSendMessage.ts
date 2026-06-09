@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useUiStore } from '@/stores/uiStore'
-import { useCreateConversation } from '../hooks/useConversation'
-import { useSendMessage } from '../hooks/useMessages'
+import { useCreateConversation } from './useConversation'
+import { useSendMessage } from './useMessages'
 import { matchesActiveDialog } from '../types/pending'
 import type { PendingSend, PendingMap } from '../types/pending'
 import { queryKeys } from "@/lib/queryKeys";
@@ -40,7 +40,7 @@ export function useChatSendMessage() {
 
     const sendMessage = (trimmed: string) => {
         if (!activeConversationId) {
-            const title = trimmed.slice(0, 10).replace(/^./, c => c.toUpperCase());
+            const title = trimmed.slice(0, 20).replace(/^./, c => c.toUpperCase());
 
             updatePending('new', { text: trimmed, targetConvId: null, error: null });
 

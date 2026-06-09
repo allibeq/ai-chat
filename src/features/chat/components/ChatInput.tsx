@@ -4,7 +4,7 @@ import type { KeyboardEvent } from 'react'
 type Props = {
     onSend: (text: string) => void
     disabled?: boolean
-    dialogId?: string
+    dialogId?: string | null
 }
 
 function ChatInput({ onSend, disabled, dialogId }: Props) {

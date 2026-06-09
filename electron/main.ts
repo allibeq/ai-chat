@@ -4,7 +4,7 @@ import {registerAuthIpc} from "./ipc/auth.ipc";
 import {registerAiIpc} from "./ipc/ai.ipc";
 
 let win: BrowserWindow | null = null;
-// Menu.setApplicationMenu(null);
+Menu.setApplicationMenu(null);
 
 const createWindow = () => {
     if (win) return;
