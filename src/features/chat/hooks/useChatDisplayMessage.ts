@@ -14,7 +14,7 @@ export function useChatDisplayMessage({ messages, activeConversationId, pending,
     )
 
     const hasOptimisticMessage = filteredMessages.some(
-        msg => msg.id.startsWith('temp-') && msg.content === pending?.text
+        msg => msg.role === 'user' && msg.content === pending?.text
     )
 
     const pendingItem: MessageData[] = showPending && !hasOptimisticMessage

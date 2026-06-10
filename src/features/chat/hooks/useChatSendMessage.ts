@@ -9,7 +9,7 @@ import type { MessageData } from "../../../lib/schemas/dialogSchema";
 import {useQueryClient} from "@tanstack/react-query";
 
 export function useChatSendMessage() {
-    const { activeConversationId } = useUiStore();
+    const { activeConversationId, setActiveConversation } = useUiStore();
 
     const { mutate: createConversation, isPending: isCreatingConversation } =
         useCreateConversation();
@@ -46,11 +46,14 @@ export function useChatSendMessage() {
 
             createConversation(title, {
                 onSuccess: (conversation) => {
+                    updatePending(conversation.id, { text: trimmed, targetConvId: conversation.id, error: null });
                     updatePending('new', null);
+                    setActiveConversation(conversation.id);
 
                     sendNewMessage(
                         { text: trimmed, convId: conversation.id },
                         {
+                            onSuccess: () => updatePending(conversation.id, null),
                             onError:   () => updatePending(conversation.id,{
                                 text:         trimmed,
                                 targetConvId: conversation.id,

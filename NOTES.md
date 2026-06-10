@@ -14,12 +14,14 @@ Three separate processes: Electron, mock AI server, PocketBase. Files are organi
 
 ## Scope
 
-Completed all core requirements. Skipped all optional items due to time — realtime sync, OAuth, single-instance, and bonus tasks.
-
+Completed all core requirements. Skipped all optional items due to lack of time — realtime sync, OAuth, single-instance, and bonus tasks.
+s
 ## What I would improve
 
 - **Conversation navigation history** — back/forward between conversations like browser history
+- **Better auth flow and security check** — better validation for passwords, OAuth login
 - **Design** — the UI is functional but minimal; I'd invest more in polish and visual consistency
+- **Light/dark theme** - and maybe I'll add customization to chats
 - **Resizable sidebar** — draggable conversation panel width
 - **Error handling** — better organisation and display of errors throughout the app
 - **Realtime sync** — live message updates via PocketBase subscriptions, so history stays in sync across windows without a reload

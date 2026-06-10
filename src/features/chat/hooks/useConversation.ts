@@ -13,7 +13,6 @@ export function useConversations() {
 
 export function useCreateConversation() {
     const queryClient= useQueryClient();
-    const setActiveConversation= useUiStore(s => s.setActiveConversation);
 
     return useMutation({
         mutationFn: (title: string) => createConversation(title),
@@ -23,7 +22,6 @@ export function useCreateConversation() {
                 (old: Awaited<ReturnType<typeof fetchConversations>> = []) =>
                     [newConv, ...old],
             );
-            setActiveConversation(newConv.id);
         },
     });
 }

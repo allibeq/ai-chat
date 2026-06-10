@@ -75,8 +75,14 @@ export function useSendMessage() {
 
         },
 
-        onSuccess: ({ convId }) => {
-            queryClient.invalidateQueries({ queryKey: queryKeys.messages(convId) });
+        onSuccess: ({ messages, convId }) => {
+            queryClient.setQueryData<MessageData[]>(
+                queryKeys.messages(convId),
+                old => [
+                    ...(old ?? []).filter(m => !m.id.startsWith('temp-')),
+                    ...messages,
+                ]
+            );
         },
 
         onSettled: () => {
